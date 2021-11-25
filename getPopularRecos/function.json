@@ -1,0 +1,28 @@
+{
+	"scriptFile": "__init__.py",
+	"bindings": [
+		{
+			"authLevel": "anonymous",
+			"type": "httpTrigger",
+			"direction": "in",
+			"name": "req",
+			"methods": ["get", "post"],
+			"route": "popular"
+		},
+		{
+			"type": "cosmosDB",
+			"direction": "in",
+			"name": "doc",
+			"databaseName": "reco",
+			"collectionName": "Popular",
+			"createIfNotExists": "true",
+			"connectionStringSetting": "AzureCosmosDBConnectionString",
+			"sqlQuery": "SELECT * from c OFFSET 0 LIMIT 5"
+		},
+		{
+			"type": "http",
+			"direction": "out",
+			"name": "$return"
+		}
+	]
+}
